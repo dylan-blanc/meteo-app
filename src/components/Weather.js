@@ -1,4 +1,4 @@
-function Weather({ weatherData, loading, error }) {
+function Weather({ weatherData, loading, error, onAddToFavorites }) {
     const getWindDirection = (deg) => {
         if (deg >= 330 || deg < 30) return "Nord";
         if (deg >= 30 && deg < 60) return "Nord-Est";
@@ -52,6 +52,12 @@ function Weather({ weatherData, loading, error }) {
             <p>Direction du vent : {getWindDirection(weatherData.wind.deg)}</p>
             <p>Description : {weatherData.weather[0].description}</p>
             <p>Humidité : {weatherData.main.humidity}%</p>
+            <button
+                onClick={() => onAddToFavorites(weatherData.name)}
+                className="btn-add-favorite"
+            >
+                ⭐ Ajouter aux favoris
+            </button>
         </div>
     );
 }
